@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8f7">
+  <meta name="description" content="Free, privacy-first browser tools for everyday tasks: calculator, unit converter, text helpers, date calculator and password generator.">
+  <title>Everyday Toolkit — small tools, ready when you are</title>
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#tool-content">Skip to tools</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Everyday Toolkit home">
+      <span class="brand-mark" aria-hidden="true">ET</span>
+      <span>everyday<span class="brand-light">toolkit</span></span>
+    </a>
+    <div class="header-actions">
+      <span class="privacy-note"><span class="privacy-dot" aria-hidden="true"></span> Private by design</span>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <span aria-hidden="true" class="theme-symbol">◐</span><span class="theme-label">Dark mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">A little help for everyday stuff</p>
+      <h1 id="page-title">Useful things.<br><span>Zero fuss.</span></h1>
+      <p class="intro-copy">A tidy set of quick tools for the small tasks that pop up every day. Free to use, right in your browser.</p>
+    </section>
+
+    <div class="workspace">
+      <nav class="tool-nav" aria-label="Choose a tool" role="tablist" aria-orientation="vertical">
+        <p class="nav-label">YOUR TOOLBOX</p>
+        <button class="tool-tab is-active" id="tab-calculator" type="button" role="tab" aria-selected="true" aria-controls="panel-calculator" data-view="calculator"><span class="tab-number">01</span><span>Calculator</span></button>
+        <button class="tool-tab" id="tab-converter" type="button" role="tab" aria-selected="false" aria-controls="panel-converter" data-view="converter" tabindex="-1"><span class="tab-number">02</span><span>Unit converter</span></button>
+        <button class="tool-tab" id="tab-text" type="button" role="tab" aria-selected="false" aria-controls="panel-text" data-view="text" tabindex="-1"><span class="tab-number">03</span><span>Text helper</span></button>
+        <button class="tool-tab" id="tab-dates" type="button" role="tab" aria-selected="false" aria-controls="panel-dates" data-view="dates" tabindex="-1"><span class="tab-number">04</span><span>Date calculator</span></button>
+        <button class="tool-tab" id="tab-password" type="button" role="tab" aria-selected="false" aria-controls="panel-password" data-view="password" tabindex="-1"><span class="tab-number">05</span><span>Password maker</span></button>
+        <div class="nav-footnote"><span aria-hidden="true">✳</span><p>No account. No tracking.<br>Your inputs stay on your device.</p></div>
+      </nav>
+
+      <section class="tool-area" id="tool-content" aria-live="off">
+        <section class="tool-panel" id="panel-calculator" role="tabpanel" aria-labelledby="tab-calculator" data-panel="calculator">
+          <div class="panel-heading"><div><p class="eyebrow">TOOL 01</p><h2>Calculator</h2></div><span class="panel-mark" aria-hidden="true">÷</span></div>
+          <p class="panel-lead">Quick sums, without the clutter.</p>
+          <div class="calculator-card">
+            <label class="sr-only" for="calc-input">Enter a calculation</label>
+            <input id="calc-input" class="calc-display" type="text" inputmode="decimal" autocomplete="off" placeholder="Try 120 × 0.15" aria-describedby="calc-help">
+            <p class="calc-help" id="calc-help">Use + − × ÷ % and parentheses. You can type or tap.</p>
+            <div class="calc-grid" aria-label="Calculator keypad">
+              <button class="calc-key key-muted" type="button" data-calc="clear" aria-label="Clear">AC</button>
+              <button class="calc-key key-muted" type="button" data-calc="back" aria-label="Delete last character">⌫</button>
+              <button class="calc-key key-operator" type="button" data-calc="%">%</button>
+              <button class="calc-key key-operator" type="button" data-calc="/">÷</button>
+              <button class="calc-key" type="button" data-calc="7">7</button><button class="calc-key" type="button" data-calc="8">8</button><button class="calc-key" type="button" data-calc="9">9</button><button class="calc-key key-operator" type="button" data-calc="*">×</button>
+              <button class="calc-key" type="button" data-calc="4">4</button><button class="calc-key" type="button" data-calc="5">5</button><button class="calc-key" type="button" data-calc="6">6</button><button class="calc-key key-operator" type="button" data-calc="-">−</button>
+              <button class="calc-key" type="button" data-calc="1">1</button><button class="calc-key" type="button" data-calc="2">2</button><button class="calc-key" type="button" data-calc="3">3</button><button class="calc-key key-operator" type="button" data-calc="+">+</button>
+              <button class="calc-key key-muted" type="button" data-calc="(">(</button><button class="calc-key" type="button" data-calc="0">0</button><button class="calc-key" type="button" data-calc=".">.</button><button class="calc-key key-equals" type="button" data-calc="equals" aria-label="Calculate">=</button>
+            </div>
+            <p class="calc-result" id="calc-result" aria-live="polite">Your answer appears here.</p>
+          </div>
+          <div class="tip-card">
+            <div class="mini-heading"><div><p class="eyebrow">SHARING A BILL?</p><h3>Tip & split</h3></div><span aria-hidden="true">/ person</span></div>
+            <form id="tip-form" class="tip-form">
+              <label>Bill amount <span class="input-with-prefix"><span aria-hidden="true">¤</span><input id="bill-amount" type="number" min="0" step="any" value="100" inputmode="decimal"></span></label>
+              <label>Tip <select id="tip-percent"><option value="0">No tip</option><option value="5">5%</option><option value="10" selected>10%</option><option value="12">12%</option><option value="15">15%</option><option value="18">18%</option><option value="20">20%</option></select></label>
+              <label>People <input id="people-count" type="number" min="1" step="1" value="2" inputmode="numeric"></label>
+              <button class="button-primary tip-submit" type="submit">Split bill</button>
+            </form>
+            <div class="tip-output" id="tip-result" aria-live="polite"><span>Each person pays</span><strong>55.00</strong></div>
+          </div>
+        </section>
+
+        <section class="tool-panel" id="panel-converter" role="tabpanel" aria-labelledby="tab-converter" data-panel="converter" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">TOOL 02</p><h2>Unit converter</h2></div><span class="panel-mark" aria-hidden="true">↔</span></div>
+          <p class="panel-lead">Switch between common units in a tap.</p>
+          <div class="tool-card">
+            <label class="field-label" for="unit-category">What are you converting?</label>
+            <select id="unit-category" class="select-large"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option><option value="volume">Volume</option></select>
+            <div class="convert-row"><label>From<input id="unit-value" type="number" value="1" step="any" inputmode="decimal"></label><label>Unit<select id="unit-from"></select></label></div>
+            <div class="swap-line"><span aria-hidden="true">↓</span><span>CONVERTS TO</span></div>
+            <div class="convert-row"><label>Result<output id="unit-result" class="result-field" aria-live="polite">—</output></label><label>Unit<select id="unit-to"></select></label></div>
+            <p class="field-hint">Conversions happen instantly on your device.</p>
+          </div>
+          <p class="small-disclaimer">Everyday estimates only. For safety-critical measurements, verify with an authoritative source.</p>
+        </section>
+
+        <section class="tool-panel" id="panel-text" role="tabpanel" aria-labelledby="tab-text" data-panel="text" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">TOOL 03</p><h2>Text helper</h2></div><span class="panel-mark" aria-hidden="true">Aa</span></div>
+          <p class="panel-lead">Tidy up text and get a quick word count.</p>
+          <div class="tool-card text-card">
+            <label class="field-label" for="text-input">Your text</label>
+            <textarea id="text-input" rows="8" placeholder="Paste or type something here…" spellcheck="true"></textarea>
+            <div class="text-stats" aria-live="polite"><span><strong id="word-count">0</strong> words</span><span><strong id="char-count">0</strong> characters</span><span><strong id="line-count">0</strong> lines</span></div>
+            <div class="text-actions" aria-label="Text actions">
+              <button class="chip-button" type="button" data-text-action="upper">UPPERCASE</button><button class="chip-button" type="button" data-text-action="lower">lowercase</button><button class="chip-button" type="button" data-text-action="title">Title Case</button><button class="chip-button" type="button" data-text-action="sentence">Sentence case</button><button class="chip-button" type="button" data-text-action="trim">Trim spaces</button>
+            </div>
+            <div class="card-footer"><span id="text-status" class="action-status" aria-live="polite"></span><button class="button-primary" type="button" id="copy-text">Copy text</button></div>
+          </div>
+        </section>
+
+        <section class="tool-panel" id="panel-dates" role="tabpanel" aria-labelledby="tab-dates" data-panel="dates" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">TOOL 04</p><h2>Date calculator</h2></div><span class="panel-mark" aria-hidden="true">◷</span></div>
+          <p class="panel-lead">Count the days or look ahead.</p>
+          <div class="tool-card date-card">
+            <h3>Days between two dates</h3>
+            <div class="convert-row"><label>Start date<input id="date-start" type="date"></label><label>End date<input id="date-end" type="date"></label></div>
+            <div class="date-result" id="date-difference" aria-live="polite">Choose two dates to see the difference.</div>
+            <hr>
+            <h3>Add or subtract days</h3>
+            <div class="convert-row"><label>Starting date<input id="date-base" type="date"></label><label>Days <span class="field-hint inline-hint">Use a negative number to go back</span><input id="date-offset" type="number" step="1" value="30" inputmode="numeric"></label></div>
+            <div class="date-result" id="date-added" aria-live="polite">Choose a starting date.</div>
+          </div>
+        </section>
+
+        <section class="tool-panel" id="panel-password" role="tabpanel" aria-labelledby="tab-password" data-panel="password" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">TOOL 05</p><h2>Password maker</h2></div><span class="panel-mark" aria-hidden="true">••</span></div>
+          <p class="panel-lead">Create a strong random password in your browser.</p>
+          <div class="tool-card password-card">
+            <label class="field-label" for="password-length">Password length <output id="length-value" for="password-length">20</output></label>
+            <input id="password-length" class="range-input" type="range" min="8" max="64" value="20">
+            <div class="range-limits"><span>8 characters</span><span>64 characters</span></div>
+            <fieldset class="password-options"><legend>Include</legend>
+              <label><input type="checkbox" id="include-upper" checked> Uppercase letters</label>
+              <label><input type="checkbox" id="include-lower" checked> Lowercase letters</label>
+              <label><input type="checkbox" id="include-numbers" checked> Numbers</label>
+              <label><input type="checkbox" id="include-symbols"> Symbols</label>
+            </fieldset>
+            <button class="button-primary generate-button" type="button" id="generate-password">Generate password</button>
+            <div class="password-result-wrap"><output id="password-result" class="password-result" aria-label="Generated password">Select Generate password</output><button class="copy-button" id="copy-password" type="button" aria-label="Copy generated password">Copy</button></div>
+            <p class="action-status" id="password-status" aria-live="polite"></p>
+            <p class="privacy-callout">Made locally using your browser’s secure random-number generator. Nothing is sent anywhere.</p>
+          </div>
+        </section>
+      </section>
+    </div>
+    <footer class="site-footer"><span>Made for the little things.</span><span>Free · Private · No sign-up</span><a href="https://github.com/ANIKAT06/everyday-toolkit" aria-label="View Everyday Toolkit on GitHub">View the project ↗</a></footer>
+  </main>
+</body>
+</html>
